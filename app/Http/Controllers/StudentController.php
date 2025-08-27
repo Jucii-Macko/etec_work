@@ -39,6 +39,8 @@ class StudentController extends Controller
         }
         // insert into db
         $insert=Student::create($input);
-        
+        if($insert){
+            return redirect('/pageAddStudent');
+        }
     }
 }
