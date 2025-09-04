@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::controller(PageController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/product/{id}', 'showDetail')->name('showDetail');
+});
 
-Route::get('/', [PageController::class,'index'])->name('index');
+
+
 

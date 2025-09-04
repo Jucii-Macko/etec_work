@@ -22,4 +22,15 @@ class PageController extends Controller
         return view('index', ['products' => $products['data']]);
     }
 
+    public function showDetail($id)
+    {
+        $response = Http::get("http://127.0.0.1:8000/api/product/{$id}");
+
+        if ($response->successful()) {
+            $product = $response->json();
+            return view('showDetail', ['product' => $product]);
+        }
+
+        abort(404, 'Product not found');
+    }
 }

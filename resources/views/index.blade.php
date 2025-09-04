@@ -24,11 +24,14 @@
         @foreach($products as $product)
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div>
-                    <img 
-                        src="{{ $product['thumbnail'] }}" 
-                        alt="{{ $product['name'] }}" 
-                        class="w-full h-full object-cover"
-                    >
+                    <a href="{{route('showDetail' , $product['id'])}}">
+                        <img 
+                            src="{{ $product['thumbnail'] }}" 
+                            alt="{{ $product['name'] }}" 
+                            class="w-full h-full object-cover"
+                        >
+                    </a>
+                    
                 </div>
                 <div class="p-4 text-center">
                     <h2 class="text-lg font-semibold mb-2">{{ $product['name'] }}</h2>
