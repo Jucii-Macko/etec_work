@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex bg-gray-100 min-h-screen">    
+    <div id="header"></div>
+
+    <!-- Sidebar container -->
+    <div id="sidebar"></div>
+    
+    <!-- Main content -->
+    <div class="flex-1 p-6">
+        <h2 class="text-xl font-semibold mb-4">Add Product</h2>
+        <form id="add_product" class="space-y-4" enctype="multipart/form-data">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" name="id" id="pro_id">
+                <input type="text" name="name" placeholder="Product Name" class="border rounded-lg px-4 py-2 w-full" required>
+                <input type="text" name="regular_price" placeholder="Regular Price" class="border rounded-lg px-4 py-2 w-full" required>
+                <input type="text" name="sale_price" placeholder="Sale Price" class="border rounded-lg px-4 py-2 w-full">
+                <input type="text" name="size" placeholder="Size" class="border rounded-lg px-4 py-2 w-full">
+                <input type="text" name="color" placeholder="Color" class="border rounded-lg px-4 py-2 w-full">
+                <input type="text" name="category" placeholder="Category" class="border rounded-lg px-4 py-2 w-full">
+                <input type="file" name="thumbnail" class="border rounded-lg px-4 py-2 w-full">
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                Add Product
+            </button>
+        </form>
+
+        <!-- Show message -->
+        <div id="message" class="mt-4 text-sm"></div>
+    </div>
+
+
+    <div id="footer"></div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $("#sidebar").load("sidebar.html");
+
+    $("#add_product").on("submit", function(e){
+        e.preventDefault();
+        let formData = new FormData(this);
+
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/add-product",  
+            type : "POST",
+            data : formData,
+            processData : false,
+            contentType : false,
+            success: function(response) {
+                $("#message").text("✅ Product added successfully!")
+                            .removeClass().addClass("text-green-600");
+                $("#add_product")[0].reset(); // fixed
+            },
+            error: function(xhr) {
+                $("#message").text("❌ Failed to add product!")
+                            .removeClass().addClass("text-red-600");
+                console.error(xhr.responseText);
+            }
+
+        })
+    })
+</script>

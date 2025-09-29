@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+
+<aside class="w-64 h-full bg-white shadow-md" id="sidebar">
+        <div class="p-6 text-2xl font-bold text-blue-600">
+        My Dashboard
+        </div>
+        <nav class="mt-6">
+        <a href="index.html" class="block py-2 px-6 text-gray-700 hover:bg-blue-100">
+            <i class="fa-solid fa-house"></i>
+            Dashboard</a>
+        <a href="add_product.html" class="block py-2 px-6 text-gray-700 hover:bg-blue-100"> 
+            <i class="fa-solid fa-plus"></i>
+            Add Product</a>
+        <a href="list_of_product.html" class="block py-2 px-6 text-gray-700 hover:bg-blue-100">
+            <i class="fa-solid fa-shirt"></i>
+            Products List</a>
+        <div class="relative">
+            <button onclick="toggleDropdown()" class="flex w-full items-center py-2 px-6 text-gray-700 hover:bg-blue-100">
+            <i class="fa-solid fa-gear mr-2"></i>
+            Settings
+            <i class="fa-solid fa-chevron-down ml-auto"></i>
+            </button>
+
+            <div id="settingsDropdown" class="hidden ml-8 mt-1 bg-white border border-gray-200 rounded-lg shadow-md">
+                <a href="#profile" class="block px-4 py-2 text-gray-700 hover:bg-blue-100">
+                    <i class="fa-solid fa-user mr-2"></i> Profile
+                </a>
+                <a href="#account" class="block px-4 py-2 text-gray-700 hover:bg-blue-100">
+                    <i class="fa-solid fa-id-card mr-2"></i> Account
+                </a>
+                <a href="#logout" class="block px-4 py-2 text-red-600 hover:bg-red-100">
+                    <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+                </a>
+            </div>
+        </div>
+        </nav>
+    </aside>
+
+</body>
+</html>
