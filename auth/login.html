@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="bg-white p-6 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+
+        <input type="email" id="email" placeholder="Email" class="w-full border p-2 mb-3 rounded">
+        <input type="password" id="password" placeholder="Password" class="w-full border p-2 mb-3 rounded">
+
+        <button id="loginBtn" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
+
+        <p class="text-center text-sm text-gray-600 mt-4">
+            Don’t have an account? 
+            <a href="register.html" class="text-blue-500 hover:underline">Register</a>
+        </p>
+    </div>
+
+</body>
+</html>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $('#loginBtn').on('click', function() {
+            const email = $('#email').val();
+            const password = $('#password').val();
+
+            if (!email || !password) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/login',
+                method: 'POST',
+                data: { email: email, password: password },
+                success: function(response) {
+                    if (response.status) {
+                        //alert(response.message);
+
+                        // Save user info
+                        localStorage.setItem('user', JSON.stringify(response.data));
+
+                        if (response.data.role == 1) {
+                            window.location.href = '/admin/list_of_product.html';
+                        } else {
+                            window.location.href = '/user/index.html';
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON?.message || 'Login failed');
+                }
+            });
+        });
+    </script>
+

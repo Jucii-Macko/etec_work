@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Product</title>
+    <title>List Product</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -38,8 +38,8 @@
         </div>
     </div>
 
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4  " >
         <input type="text" name="id" id="pro_id">
         <input type="text" name="edit_name" >
         <input type="text" name="edit_regular_price" >
@@ -52,6 +52,8 @@
     <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
         Add Product
     </button>
+</div>
+   
 </body>
 
 </html>
@@ -120,11 +122,11 @@
         });
     
         // update
-        $("#productTable").on("click", ".btn-edit", function(){
+        /*$("#productTable").on("click", ".btn-edit", function(){
             //alert("edit");
             let id = $(this).data("id");
             window.location.href = `add_product.html?id=${id}`;
-        });
+        });*/
     });
 
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md bg-white shadow-md rounded-xl p-8">
+        <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
+
+        <form id="registerForm" class="space-y-4" enctype="multipart/form-data">
+            <!-- Name -->
+            <div>
+                <label class="block text-gray-700 mb-1">Name</label>
+                <input type="text" name="name" placeholder="Enter your name"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-gray-700 mb-1">Email</label>
+                <input type="email" name="email" placeholder="Enter your email"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label class="block text-gray-700 mb-1">Password</label>
+                <input type="password" name="password" placeholder="Enter your password"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+            </div>
+
+            <!-- Profile Upload -->
+            <div>
+                <label class="block text-gray-700 mb-1">Profile Picture</label>
+                <input type="file" name="profile" accept="image/*"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
+                Register
+            </button>
+        </form>
+
+        <p class="text-center text-gray-600 mt-4">
+            Already have an account?
+            <a href="login.html" class="text-blue-500 hover:underline">Login</a>
+        </p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#registerForm").on("submit", function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                $.ajax({
+                    url: `http://127.0.0.1:8000/api/register`, 
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        alert("Registered Successfully!");
+                        console.log(res);
+                        // redirect if needed
+                        window.location.href = "login.html";
+                    },
+                    error: function (xhr) {
+                        console.error(xhr.responseText);
+                        alert("Registration failed!");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
