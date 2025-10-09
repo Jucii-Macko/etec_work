@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +31,14 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/products/limits/{limit}','getLimit');
     Route::get('/products/category/{cate}','getByCategory');
     Route::get('/products/search/{search}', 'searchByName');
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::post('/register', 'register');
+    Route::get('/user', 'getUser');
+});
+
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout');
 });

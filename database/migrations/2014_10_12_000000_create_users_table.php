@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->longText('profile')->default('https://www.pinterest.com/pin/954270608553252825/');
+            $table->tinyInteger('role')->default(0);
             $table->timestamps();
         });
+
     }
 
     /**
